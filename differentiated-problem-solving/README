@@ -1,0 +1,208 @@
+# Orbital Memory — Differentiated Problem Solving
+
+Resolução matemática da eficiência de sinal de satélite em função da altura da antena.
+
+Global Solution 2026 · FIAP · Engenharia de Software
+
+---
+
+## O problema
+
+A FIAP forneceu uma função que modela a eficiência do sinal de um satélite conforme a altura de uma antena.
+
+O objetivo é determinar uma altura adequada para a instalação da antena, considerando três fatores:
+
+- boa eficiência de sinal;
+- estabilidade operacional;
+- menor custo estrutural possível.
+
+A análise utiliza derivadas, máximos e mínimos locais e o método de Newton-Raphson.
+
+---
+
+## Função analisada
+
+A função fornecida é:
+
+```text
+E(x) = -x⁶/6 + 3x⁵ - 21,25x⁴ + 75x³ - 137x² + 120x
+```
+
+Onde:
+
+- `E(x)` representa a eficiência do sinal;
+- `x` representa a altura da antena em centenas de metros.
+
+Exemplos:
+
+```text
+x = 1 → 100 metros
+x = 2 → 200 metros
+x = 3 → 300 metros
+```
+
+---
+
+## Derivada primeira
+
+A primeira derivada da função é:
+
+```text
+E'(x) = -x⁵ + 15x⁴ - 85x³ + 225x² - 274x + 120
+```
+
+A derivada primeira é usada para encontrar os pontos críticos da função.
+
+---
+
+## Derivada segunda
+
+A segunda derivada da função é:
+
+```text
+E''(x) = -5x⁴ + 60x³ - 255x² + 450x - 274
+```
+
+A derivada segunda é usada para classificar os pontos críticos:
+
+- se `E''(x) < 0`, o ponto é máximo local;
+- se `E''(x) > 0`, o ponto é mínimo local.
+
+---
+
+## Método de Newton-Raphson
+
+O método de Newton-Raphson é um método numérico usado para encontrar raízes de funções.
+
+Neste problema, ele foi aplicado sobre `E'(x)`, porque os zeros da derivada são os pontos críticos da função original.
+
+A fórmula utilizada foi:
+
+```text
+xₙ₊₁ = xₙ - E'(xₙ) / E''(xₙ)
+```
+
+O método parte de valores iniciais diferentes e aproxima os pontos em que `E'(x) = 0`.
+
+---
+
+## Estrutura do projeto
+
+```text
+differentiated-problem-solving/
+├── resolucao-dps.pdf     — explicação matemática e análise crítica
+├── newton_raphson.py     — implementação do método numérico
+└── README.md             — documentação da etapa
+```
+
+---
+
+## Como executar
+
+Não há dependências externas. Basta ter Python 3 instalado.
+
+No terminal, dentro da pasta `differentiated-problem-solving`, execute:
+
+```bash
+python newton_raphson.py
+```
+
+Ou:
+
+```bash
+python3 newton_raphson.py
+```
+
+---
+
+## O que o código faz
+
+O arquivo `newton_raphson.py`:
+
+1. Define a função original `E(x)`.
+2. Define a derivada primeira `E'(x)`.
+3. Define a derivada segunda `E''(x)`.
+4. Aplica Newton-Raphson sobre `E'(x)`.
+5. Encontra os pontos críticos.
+6. Classifica os pontos como máximos ou mínimos locais.
+7. Exibe a eficiência e a altura correspondente.
+
+---
+
+## Resultados encontrados
+
+| x | Altura | E(x) | E''(x) | Tipo |
+|---|---|---|---|---|
+| 1,0000 | 100 m | 39,5833 | -24,0000 | Máximo local |
+| 2,0000 | 200 m | 37,3333 | +6,0000 | Mínimo local |
+| 3,0000 | 300 m | 38,2500 | -4,0000 | Máximo local |
+| 4,0000 | 400 m | 37,3333 | +6,0000 | Mínimo local |
+| 5,0000 | 500 m | 39,5833 | -24,0000 | Máximo local |
+
+---
+
+## Análise da escolha
+
+Embora os máximos locais em `x = 1` e `x = 5` apresentem maior valor de eficiência, eles também estão associados a maior sensibilidade operacional.
+
+A escolha final considera não apenas o maior valor de eficiência, mas também a estabilidade e o custo estrutural.
+
+A faixa mais adequada foi:
+
+```text
+x = 2,5 até x = 3,5
+```
+
+Ou seja:
+
+```text
+250 metros até 350 metros
+```
+
+A altura escolhida foi:
+
+```text
+x = 3
+```
+
+Ou seja:
+
+```text
+300 metros
+```
+
+---
+
+## Justificativa da altura escolhida
+
+A altura de 300 metros foi escolhida porque apresenta:
+
+- boa eficiência de sinal;
+- estabilidade operacional aceitável;
+- custo estrutural intermediário;
+- menor sensibilidade em comparação com extremos da função;
+- coerência com o contexto da instalação de uma antena de monitoramento.
+
+---
+
+## Conexão com o projeto Orbital Memory
+
+No contexto do Orbital Memory, a antena representa uma estrutura de comunicação e transmissão de dados da estação urbana.
+
+A análise matemática apoia a escolha de uma altura viável para manter comunicação eficiente, estabilidade operacional e coerência com o custo de implantação.
+
+---
+
+## Conexão com a indústria espacial
+
+A etapa se conecta à indústria espacial por trabalhar com eficiência de sinal, antenas, transmissão de dados, estabilidade operacional e tomada de decisão técnica.
+
+Esses elementos são comuns em sistemas de comunicação satelital e infraestrutura de missão crítica.
+
+---
+
+## Conclusão
+
+A análise matemática demonstrou que a melhor decisão não é apenas escolher o maior valor absoluto de eficiência, mas sim equilibrar desempenho, estabilidade e custo.
+
+Com base nos cálculos e na análise crítica, a altura recomendada para a antena é de aproximadamente 300 metros.
