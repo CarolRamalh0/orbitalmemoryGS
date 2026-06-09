@@ -1,0 +1,272 @@
+# Orbital Memory Station — Edge Computing & Computer Systems
+
+## Descrição do projeto
+
+A **Orbital Memory Station** é uma estação física simulada de monitoramento urbano crítico, desenvolvida para o projeto **Orbital Memory**, da Global Solution 2026 da FIAP.
+
+O sistema representa uma estação autônoma inspirada em sistemas de missão crítica da indústria espacial. Sua função é monitorar variáveis de risco urbano, interpretar os dados recebidos dos sensores e acionar alertas automaticamente quando houver situação de atenção ou risco crítico.
+
+A proposta se conecta ao conceito central do Orbital Memory: uma caixa-preta urbana capaz de preservar e sinalizar dados importantes antes, durante e depois de situações de desastre.
+
+---
+
+## Contexto da missão
+
+Em situações de desastre, como enchentes, apagões, falhas estruturais ou perda de comunicação, uma cidade pode perder dados críticos justamente no momento em que eles são mais necessários.
+
+Por isso, a Orbital Memory Station foi pensada para funcionar de forma **local, autônoma e offline**. Mesmo sem conexão com internet ou computador externo, a estação consegue ler sensores, classificar riscos, exibir telemetria no display e acionar alertas visuais e sonoros.
+
+Assim como sistemas embarcados aeroespaciais precisam operar com acesso físico limitado e alta confiabilidade, esta estação foi projetada para tomar decisões automaticamente a partir dos dados coletados.
+
+---
+
+## Problema solucionado
+
+O problema solucionado é a necessidade de monitoramento autônomo em uma estação urbana crítica.
+
+Caso esse tipo de sistema falhe durante uma emergência, operadores podem perder informações importantes sobre o nível do rio, a integridade da estação e o estado de risco da região monitorada.
+
+A solução busca reduzir esse risco por meio de uma estação embarcada que monitora os dados localmente e responde em tempo real.
+
+---
+
+## Estrutura do projeto
+
+```text
+edge-computing-computer-systems/
+├── codigo-arduino.ino    — código-fonte da estação
+├── README.md             — documentação da etapa
+├── link-tinkercad.txt    — link da simulação no Tinkercad
+└── print-circuito.png    — imagem do circuito funcionando
+```
+
+---
+
+## Componentes utilizados
+
+- Arduino Uno R3
+- Protoboard
+- Display LCD 16x2
+- 2 potenciômetros
+- LED verde
+- LED amarelo
+- LED vermelho
+- Buzzer piezo
+- Resistores de 220Ω
+- Jumpers
+
+---
+
+## Sensores simulados
+
+| Sensor | Componente | Pino | Função |
+|---|---|---|---|
+| Nível do rio | Potenciômetro | A0 | Simula o aumento ou redução do nível do rio |
+| Integridade da estação | Potenciômetro | A1 | Simula a condição física da estação monitorada |
+
+---
+
+## Atuadores
+
+| Atuador | Pino | Função |
+|---|---|---|
+| LED verde | 8 | Indica operação normal |
+| LED amarelo | 9 | Indica estado de atenção |
+| LED vermelho | 10 | Indica estado crítico |
+| Buzzer | 11 | Emite alerta sonoro em situação crítica |
+| LCD 16x2 | 12, 7, 5, 4, 3, 2 | Exibe a telemetria local da estação |
+
+---
+
+## Ligações do LCD
+
+| LCD | Arduino |
+|---|---|
+| GND | GND |
+| VCC | 5V |
+| VO | GND |
+| RS | 12 |
+| RW | GND |
+| E | 7 |
+| DB0 | Não utilizado |
+| DB1 | Não utilizado |
+| DB2 | Não utilizado |
+| DB3 | Não utilizado |
+| DB4 | 5 |
+| DB5 | 4 |
+| DB6 | 3 |
+| DB7 | 2 |
+| LED | 5V com resistor de 220Ω |
+| LED | GND |
+
+---
+
+## Ligações dos sensores e atuadores
+
+| Componente | Pino no Arduino |
+|---|---|
+| Potenciômetro do nível do rio | A0 |
+| Potenciômetro da integridade da estação | A1 |
+| LED verde | 8 |
+| LED amarelo | 9 |
+| LED vermelho | 10 |
+| Buzzer | 11 |
+
+---
+
+## Estados do sistema
+
+| Estado | Condição | Resposta do sistema |
+|---|---|---|
+| NORMAL | Rio abaixo de 60% e integridade acima de 60% | LED verde ligado e buzzer desligado |
+| ATENCAO | Rio entre 60% e 79% ou integridade entre 41% e 60% | LED amarelo ligado e buzzer desligado |
+| CRITICO | Rio a partir de 80% ou integridade igual ou abaixo de 40% | LED vermelho ligado e buzzer acionado |
+
+---
+
+## Funcionamento do sistema
+
+O sistema realiza leituras periódicas dos dois sensores simulados.
+
+O potenciômetro conectado ao pino A0 representa o nível do rio. Conforme o valor aumenta, o sistema interpreta maior risco de enchente.
+
+O potenciômetro conectado ao pino A1 representa a integridade física da estação. Conforme o valor diminui, o sistema entende que a estação pode estar em condição de risco estrutural.
+
+A partir dessas leituras, o código classifica automaticamente o estado do sistema como **NORMAL**, **ATENCAO** ou **CRITICO**.
+
+O display LCD mostra a telemetria local com os valores dos sensores e o status atual da estação. O Serial Monitor registra os dados completos, incluindo os contadores de erro dos sensores.
+
+---
+
+## Requisitos técnicos atendidos
+
+- Sistema embarcado simulado com Arduino
+- Funcionamento autônomo
+- Dois sensores simulados
+- Atuadores visuais com LEDs
+- Alerta sonoro com buzzer
+- Display LCD obrigatório para telemetria local
+- Uso de `millis()` para temporização não bloqueante
+- Ausência de `delay()`
+- Validação das leituras dos sensores
+- Contadores de erro
+- Registro de telemetria no Serial Monitor
+- Código organizado e comentado
+
+---
+
+## Instruções de operação
+
+1. Abra a simulação no Tinkercad.
+2. Inicie a execução do circuito.
+3. Gire o potenciômetro conectado ao pino A0 para simular o nível do rio.
+4. Gire o potenciômetro conectado ao pino A1 para simular a integridade da estação.
+5. Observe o LCD atualizando os valores de telemetria.
+6. Observe os LEDs mudando conforme o estado do sistema.
+7. Quando o estado for crítico, o LED vermelho será acionado e o buzzer emitirá alerta sonoro.
+8. Abra o Serial Monitor para visualizar os registros completos da estação.
+
+---
+
+## Cenários de teste
+
+### Cenário 1 — Operação normal
+
+- Nível do rio abaixo de 60%
+- Integridade da estação acima de 60%
+
+Resultado esperado:
+
+- LED verde ligado
+- LED amarelo desligado
+- LED vermelho desligado
+- Buzzer desligado
+- LCD exibindo status NORMAL
+
+---
+
+### Cenário 2 — Estado de atenção
+
+- Nível do rio entre 60% e 79%
+- Ou integridade da estação entre 41% e 60%
+
+Resultado esperado:
+
+- LED verde desligado
+- LED amarelo ligado
+- LED vermelho desligado
+- Buzzer desligado
+- LCD exibindo status ATENCAO
+
+---
+
+### Cenário 3 — Estado crítico
+
+- Nível do rio igual ou acima de 80%
+- Ou integridade da estação igual ou abaixo de 40%
+
+Resultado esperado:
+
+- LED verde desligado
+- LED amarelo desligado
+- LED vermelho ligado
+- Buzzer acionado
+- LCD exibindo status CRITICO
+
+---
+
+## Link da simulação
+
+O link da simulação no Tinkercad está disponível no arquivo:
+
+```text
+link-tinkercad.txt
+```
+
+---
+
+## Código-fonte
+
+O código-fonte da estação está disponível no arquivo:
+
+```text
+codigo-arduino.ino
+```
+
+---
+
+## Print do circuito
+
+O print do circuito funcionando está disponível no arquivo:
+
+```text
+print-circuito.png
+```
+
+---
+
+## Conexão com a indústria espacial
+
+O projeto se conecta à indústria espacial por utilizar conceitos de sistemas embarcados, telemetria, autonomia, monitoramento remoto e missão crítica.
+
+Sistemas aeroespaciais precisam operar de maneira confiável mesmo com acesso físico limitado, atrasos de comunicação ou ausência de intervenção humana direta. A Orbital Memory Station segue essa mesma lógica ao funcionar localmente e tomar decisões automáticas com base nos dados dos sensores.
+
+---
+
+## Relação com o projeto Orbital Memory
+
+A Orbital Memory Station é a camada física simulada do projeto Orbital Memory.
+
+Enquanto o dashboard representa a visualização dos dados e o Python realiza a análise computacional dos riscos, a estação embarcada simula a coleta local de dados críticos em campo.
+
+Dessa forma, a solução fica integrada entre software, dados, interface e sistema físico.
+
+---
+
+## Conclusão
+
+A Orbital Memory Station demonstra como sistemas embarcados podem apoiar cidades em situações críticas.
+
+A solução monitora variáveis importantes, classifica riscos automaticamente e aciona alertas locais, contribuindo para a preservação de dados e para uma resposta mais rápida em cenários de desastre.
+
+O sistema reforça a proposta do Orbital Memory: nenhuma cidade deve perder sua memória operacional durante uma emergência.
