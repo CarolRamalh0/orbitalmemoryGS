@@ -1,0 +1,193 @@
+# Orbital Memory — Computational Thinking with Python
+
+Sistema de análise de risco urbano em Python desenvolvido para a Global Solution 2026 da FIAP.
+
+---
+
+## O problema
+
+Desastres naturais como enchentes, incêndios, deslizamentos e falhas de comunicação podem gerar perda de dados críticos em cidades.
+
+Durante uma emergência, informações como nível do rio, temperatura, umidade, integridade de estações e comunicação dos sensores são essenciais para apoiar decisões rápidas.
+
+O problema é que esses dados podem ficar desorganizados ou inacessíveis, dificultando a classificação de risco e a resposta das equipes responsáveis.
+
+---
+
+## A solução
+
+Este módulo em Python faz parte do projeto **Orbital Memory**, uma plataforma pensada como uma “caixa-preta urbana”.
+
+O sistema lê dados simulados de sensores urbanos a partir de um arquivo CSV, classifica o risco de cada região e gera um relatório com os eventos prováveis e as ações recomendadas.
+
+---
+
+## Estrutura do projeto
+
+```text
+computational-thinking-with-python/
+├── dados_sensores.csv     — dados simulados das regiões monitoradas
+├── main.py                — código principal de análise de risco
+├── relatorio_alertas.txt  — relatório gerado automaticamente
+└── README.md              — documentação da etapa
+```
+
+---
+
+## Dados analisados
+
+O arquivo `dados_sensores.csv` contém informações simuladas de regiões monitoradas.
+
+| Dado | Função |
+|---|---|
+| Região | Identifica a área monitorada |
+| Nível do rio | Ajuda a detectar risco de enchente |
+| Temperatura | Ajuda a detectar risco de incêndio |
+| Umidade | Ajuda a detectar risco de deslizamento |
+| Integridade da estação | Indica possível falha estrutural |
+| Comunicação | Indica se a estação está online, instável ou offline |
+
+---
+
+## O que o código faz
+
+O arquivo `main.py` executa as seguintes etapas:
+
+1. Lê os dados do arquivo CSV.
+2. Converte os valores numéricos.
+3. Analisa os indicadores de cada região.
+4. Calcula uma pontuação de risco.
+5. Classifica o risco como `BAIXO`, `MÉDIO`, `ALTO` ou `CRÍTICO`.
+6. Define o evento provável.
+7. Define uma ação recomendada.
+8. Exibe os resultados no terminal.
+9. Gera o arquivo `relatorio_alertas.txt`.
+
+---
+
+## Classificação de risco
+
+| Pontuação | Risco |
+|---|---|
+| 0 ou 1 | BAIXO |
+| 2 ou 3 | MÉDIO |
+| 4 ou 5 | ALTO |
+| 6 ou mais | CRÍTICO |
+
+---
+
+## Eventos detectados
+
+O sistema pode identificar eventos como:
+
+- operação normal;
+- possível enchente;
+- enchente;
+- possível foco de incêndio;
+- incêndio;
+- deslizamento;
+- falha estrutural;
+- comunicação instável;
+- falha de comunicação.
+
+---
+
+## Como executar
+
+Não há dependências externas. Basta ter Python 3 instalado.
+
+No terminal, dentro da pasta `computational-thinking-with-python`, execute:
+
+```bash
+python main.py
+```
+
+Ou:
+
+```bash
+python3 main.py
+```
+
+Após a execução, o terminal exibirá a análise das regiões e o arquivo `relatorio_alertas.txt` será criado ou atualizado automaticamente.
+
+---
+
+## Exemplo de saída
+
+```text
+ORBITAL MEMORY — ANÁLISE DE RISCO URBANO
+==================================================
+
+Região: Zona Sul
+Risco: ALTO
+Evento provável: Enchente
+Pontuação de risco: 4
+Ação recomendada: Acionar Defesa Civil, priorizar evacuação preventiva e preservar dados no histórico orbital.
+```
+
+---
+
+## Benefícios mensuráveis da solução
+
+| Indicador | Impacto |
+|---|---|
+| Tempo de análise | As regiões são analisadas em poucos segundos |
+| Automação | O risco é classificado automaticamente |
+| Rastreabilidade | O relatório registra os eventos analisados |
+| Escalabilidade | Novas regiões podem ser adicionadas no CSV |
+| Apoio à decisão | Cada risco possui uma ação recomendada |
+
+---
+
+## Tratamento de erros
+
+O código possui tratamento para:
+
+- arquivo CSV não encontrado;
+- colunas incorretas;
+- valores inválidos no arquivo;
+- leitura segura dos dados.
+
+Isso evita que o sistema quebre sem apresentar uma mensagem compreensível.
+
+---
+
+## Conexão com o projeto Orbital Memory
+
+Este módulo representa a camada computacional de análise de dados do Orbital Memory.
+
+Enquanto o dashboard exibe os alertas visualmente e o Arduino simula uma estação física, o Python realiza a classificação lógica dos riscos a partir de dados simulados.
+
+---
+
+## Conexão com a indústria espacial
+
+O projeto se conecta à indústria espacial por utilizar conceitos como:
+
+- análise de telemetria;
+- monitoramento remoto;
+- classificação automática de risco;
+- preservação de dados críticos;
+- apoio à decisão em missão crítica.
+
+Assim como sistemas espaciais precisam interpretar dados de sensores para tomar decisões, o Orbital Memory aplica essa lógica ao contexto urbano.
+
+---
+
+## Arquivos gerados
+
+O principal arquivo gerado pelo sistema é:
+
+```text
+relatorio_alertas.txt
+```
+
+Esse relatório contém os resultados da análise das regiões monitoradas.
+
+---
+
+## Conclusão
+
+O módulo em Python do Orbital Memory demonstra como dados simulados de sensores urbanos podem ser processados para gerar informações úteis em situações de desastre.
+
+A solução contribui para a proposta central do projeto: preservar dados críticos e apoiar decisões em momentos de risco.
