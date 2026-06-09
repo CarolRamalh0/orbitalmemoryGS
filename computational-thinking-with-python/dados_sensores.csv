@@ -1,0 +1,9 @@
+regiao,nivel_rio,temperatura,umidade,integridade_estacao,comunicacao
+Zona Sul,92,26,88,72,online
+Centro,68,31,74,85,online
+Zona Norte,45,24,60,91,online
+Area Industrial,38,420,35,66,online
+Zona Leste,52,29,70,80,instavel
+Zona Oeste,30,23,55,94,online
+Serra Gaucha,61,22,94,70,online
+Estacao Beta-7,50,27,65,42,offline

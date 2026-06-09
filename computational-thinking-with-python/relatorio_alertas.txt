@@ -1,0 +1,48 @@
+Região: Zona Sul
+Risco: ALTO
+Evento provável: Enchente
+Pontuação de risco: 4
+Ação recomendada: Acionar Defesa Civil, priorizar evacuação preventiva e preservar dados no histórico orbital.
+--------------------------------------------------
+Região: Centro
+Risco: BAIXO
+Evento provável: Operação normal
+Pontuação de risco: 0
+Ação recomendada: Manter monitoramento contínuo.
+--------------------------------------------------
+Região: Zona Norte
+Risco: BAIXO
+Evento provável: Operação normal
+Pontuação de risco: 0
+Ação recomendada: Manter monitoramento contínuo.
+--------------------------------------------------
+Região: Area Industrial
+Risco: ALTO
+Evento provável: Incêndio
+Pontuação de risco: 4
+Ação recomendada: Acionar brigada de emergência, isolar área afetada e registrar ocorrência crítica.
+--------------------------------------------------
+Região: Zona Leste
+Risco: BAIXO
+Evento provável: Comunicação instável
+Pontuação de risco: 1
+Ação recomendada: Monitorar instabilidade e preparar redundância.
+--------------------------------------------------
+Região: Zona Oeste
+Risco: BAIXO
+Evento provável: Operação normal
+Pontuação de risco: 0
+Ação recomendada: Manter monitoramento contínuo.
+--------------------------------------------------
+Região: Serra Gaucha
+Risco: MÉDIO
+Evento provável: Deslizamento
+Pontuação de risco: 3
+Ação recomendada: Monitorar encostas, alertar moradores próximos e preservar leituras dos sensores.
+--------------------------------------------------
+Região: Estacao Beta-7
+Risco: CRÍTICO
+Evento provável: Falha de comunicação
+Pontuação de risco: 6
+Ação recomendada: Ativar canal alternativo e sincronização orbital.
+--------------------------------------------------
