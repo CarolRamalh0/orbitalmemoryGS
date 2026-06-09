@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orbital Memory — Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">◉</span>
+          <div class="brand-text">
+            <strong class="brand-name">Orbital Memory</strong>
+            <span class="brand-tagline">A caixa-preta das cidades</span>
+          </div>
+        </div>
+
+        <nav class="main-nav" aria-label="Navegação principal">
+          <ul role="list">
+            <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+            <li><a href="#mapa" class="nav-link">Mapa</a></li>
+            <li><a href="#historico" class="nav-link">Histórico</a></li>
+            <li><a href="#alertas" class="nav-link">Alertas</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-status">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span class="status-label">Sistema Operacional</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="conteudo-principal">
+
+      <section id="dashboard" class="section-dashboard" aria-labelledby="titulo-dashboard">
+        <div class="section-header">
+          <h1 id="titulo-dashboard">Dashboard Principal</h1>
+          <p class="section-subtitle">Monitoramento em tempo real — Rio Grande do Sul</p>
+        </div>
+
+        <div class="cards-grid" role="list" aria-label="Indicadores principais">
+
+          <article class="card card--eventos" role="listitem">
+            <header class="card-header">
+              <span class="card-icon" aria-hidden="true">⬡</span>
+              <h2 class="card-title">Eventos Registrados</h2>
+            </header>
+            <p class="card-value" id="qtd-eventos">247</p>
+            <footer class="card-footer">
+              <span class="card-delta card-delta--up">↑ 12 nas últimas 24h</span>
+            </footer>
+          </article>
+
+          <article class="card card--sensores" role="listitem">
+            <header class="card-header">
+              <span class="card-icon" aria-hidden="true">◈</span>
+              <h2 class="card-title">Sensores Ativos</h2>
+            </header>
+            <p class="card-value" id="qtd-sensores">84 <span class="card-value-unit">/ 90</span></p>
+            <footer class="card-footer">
+              <span class="card-delta card-delta--warn">6 sensores offline</span>
+            </footer>
+          </article>
+
+          <article class="card card--areas" role="listitem">
+            <header class="card-header">
+              <span class="card-icon" aria-hidden="true">◻</span>
+              <h2 class="card-title">Áreas Monitoradas</h2>
+            </header>
+            <p class="card-value" id="qtd-areas">32</p>
+            <footer class="card-footer">
+              <span class="card-delta card-delta--neutral">3 regiões em alerta</span>
+            </footer>
+          </article>
+
+          <article class="card card--status" role="listitem">
+            <header class="card-header">
+              <span class="card-icon" aria-hidden="true">◎</span>
+              <h2 class="card-title">Status Orbital</h2>
+            </header>
+            <p class="card-value card-value--status" id="status-sistema">SINCRONIZADO</p>
+            <footer class="card-footer">
+              <span class="card-delta card-delta--ok">Última sincronização: 03:42</span>
+            </footer>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="mapa" class="section-mapa" aria-labelledby="titulo-mapa">
+        <div class="section-header">
+          <h2 id="titulo-mapa">Mapa da Cidade</h2>
+          <p class="section-subtitle">Regiões monitoradas e locais afetados</p>
+        </div>
+
+        <div class="mapa-container">
+          <div class="mapa-visual" role="img" aria-label="Representação visual das regiões monitoradas">
+            <svg viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg" class="mapa-svg" aria-hidden="true">
+              <defs>
+                <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(0,255,200,0.07)" stroke-width="1"/>
+                </pattern>
+              </defs>
+              <rect width="600" height="380" fill="url(#grid)" />
+
+              <polygon points="80,60 200,40 220,160 100,170" class="regiao regiao--ok" data-nome="Zona Norte"/>
+              <polygon points="220,40 370,50 380,180 220,160" class="regiao regiao--alerta" data-nome="Centro"/>
+              <polygon points="370,50 520,70 510,190 380,180" class="regiao regiao--ok" data-nome="Zona Leste"/>
+              <polygon points="80,170 220,160 230,300 90,290" class="regiao regiao--critico" data-nome="Zona Sul"/>
+              <polygon points="220,160 380,180 390,310 230,300" class="regiao regiao--alerta" data-nome="Área Industrial"/>
+              <polygon points="380,180 510,190 500,320 390,310" class="regiao regiao--ok" data-nome="Zona Oeste"/>
+
+              <text x="140" y="115" class="regiao-label">Zona Norte</text>
+              <text x="278" y="115" class="regiao-label">Centro</text>
+              <text x="425" y="125" class="regiao-label">Zona Leste</text>
+              <text x="138" y="235" class="regiao-label regiao-label--critico">Zona Sul ⚠</text>
+              <text x="280" y="240" class="regiao-label">Área Ind.</text>
+              <text x="420" y="255" class="regiao-label">Zona Oeste</text>
+
+              <circle cx="150" cy="105" r="5" class="sensor-dot sensor-dot--ok"/>
+              <circle cx="295" cy="105" r="5" class="sensor-dot sensor-dot--alerta"/>
+              <circle cx="440" cy="120" r="5" class="sensor-dot sensor-dot--ok"/>
+              <circle cx="155" cy="225" r="5" class="sensor-dot sensor-dot--critico"/>
+              <circle cx="300" cy="228" r="5" class="sensor-dot sensor-dot--alerta"/>
+              <circle cx="440" cy="248" r="5" class="sensor-dot sensor-dot--ok"/>
+            </svg>
+          </div>
+
+          <aside class="mapa-legenda" aria-label="Legenda do mapa">
+            <h3 class="legenda-titulo">Legenda</h3>
+            <ul role="list">
+              <li class="legenda-item">
+                <span class="legenda-cor legenda-cor--ok" aria-hidden="true"></span>
+                <span>Operação normal</span>
+              </li>
+              <li class="legenda-item">
+                <span class="legenda-cor legenda-cor--alerta" aria-hidden="true"></span>
+                <span>Em alerta</span>
+              </li>
+              <li class="legenda-item">
+                <span class="legenda-cor legenda-cor--critico" aria-hidden="true"></span>
+                <span>Situação crítica</span>
+              </li>
+            </ul>
+            <div class="legenda-resumo">
+              <p><strong>6</strong> regiões monitoradas</p>
+              <p><strong>2</strong> em estado de alerta</p>
+              <p><strong>1</strong> situação crítica</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="historico" class="section-historico" aria-labelledby="titulo-historico">
+        <div class="section-header">
+          <h2 id="titulo-historico">Histórico de Eventos</h2>
+          <p class="section-subtitle">Registros recentes de desastres urbanos</p>
+        </div>
+
+        <div class="historico-container">
+
+          <article class="evento-card evento-card--enchente">
+            <header class="evento-header">
+              <span class="evento-tipo-badge">Enchente</span>
+              <time datetime="2026-05-14" class="evento-data">14 Mai 2026</time>
+            </header>
+            <h3 class="evento-titulo">Transbordamento do Rio Gravataí</h3>
+            <p class="evento-desc">Nível atingiu 4,8m acima do limite. Zona Sul e Centro afetados. 3.200 desabrigados.</p>
+            <footer class="evento-footer">
+              <span class="evento-status evento-status--resolvido">Resolvido</span>
+              <span class="evento-sensores">18 sensores acionados</span>
+            </footer>
+          </article>
+
+          <article class="evento-card evento-card--incendio">
+            <header class="evento-header">
+              <span class="evento-tipo-badge">Incêndio</span>
+              <time datetime="2026-04-28" class="evento-data">28 Abr 2026</time>
+            </header>
+            <h3 class="evento-titulo">Incêndio na Área Industrial Norte</h3>
+            <p class="evento-desc">Temperatura acima de 320°C detectada. Risco de expansão para bairros residenciais.</p>
+            <footer class="evento-footer">
+              <span class="evento-status evento-status--resolvido">Resolvido</span>
+              <span class="evento-sensores">9 sensores acionados</span>
+            </footer>
+          </article>
+
+          <article class="evento-card evento-card--deslizamento">
+            <header class="evento-header">
+              <span class="evento-tipo-badge">Deslizamento</span>
+              <time datetime="2026-04-10" class="evento-data">10 Abr 2026</time>
+            </header>
+            <h3 class="evento-titulo">Deslizamento na Serra Gaúcha</h3>
+            <p class="evento-desc">Movimentação de solo em encosta de alto risco. Umidade do solo 94%. Área evacuada preventivamente.</p>
+            <footer class="evento-footer">
+              <span class="evento-status evento-status--monitorando">Monitorando</span>
+              <span class="evento-sensores">22 sensores acionados</span>
+            </footer>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="alertas" class="section-alertas" aria-labelledby="titulo-alertas">
+        <div class="section-header">
+          <h2 id="titulo-alertas">Central de Alertas</h2>
+          <p class="section-subtitle">Notificações ativas do sistema de monitoramento</p>
+        </div>
+
+        <div class="alertas-grid">
+
+          <div class="alertas-coluna alertas-coluna--critico" role="region" aria-label="Alertas críticos">
+            <h3 class="alertas-coluna-titulo">
+              <span class="alerta-badge alerta-badge--critico" aria-hidden="true">●</span>
+              Alertas Críticos
+            </h3>
+            <ul role="list" class="alertas-lista">
+              <li class="alerta-item alerta-item--critico" role="alert">
+                <span class="alerta-hora">03:42</span>
+                <p class="alerta-msg">Nível do Rio Gravataí crítico — Zona Sul em risco imediato</p>
+              </li>
+              <li class="alerta-item alerta-item--critico" role="alert">
+                <span class="alerta-hora">02:17</span>
+                <p class="alerta-msg">Falha de comunicação — Estação Beta-7 sem resposta há 90min</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="alertas-coluna alertas-coluna--moderado" role="region" aria-label="Alertas moderados">
+            <h3 class="alertas-coluna-titulo">
+              <span class="alerta-badge alerta-badge--moderado" aria-hidden="true">●</span>
+              Alertas Moderados
+            </h3>
+            <ul role="list" class="alertas-lista">
+              <li class="alerta-item alerta-item--moderado">
+                <span class="alerta-hora">05:10</span>
+                <p class="alerta-msg">Temperatura elevada detectada — Setor Industrial Leste</p>
+              </li>
+              <li class="alerta-item alerta-item--moderado">
+                <span class="alerta-hora">04:55</span>
+                <p class="alerta-msg">Umidade do solo acima de 85% — Encosta Norte monitorada</p>
+              </li>
+              <li class="alerta-item alerta-item--moderado">
+                <span class="alerta-hora">04:30</span>
+                <p class="alerta-msg">Redução de 12% na integridade da Estação Gama-3</p>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <p class="footer-brand">◉ Orbital Memory</p>
+        <p class="footer-copy">
+          Projeto Global Solution 2026 · FIAP ·
+          <span>Carol Ramalho</span>
+        </p>
+        <p class="footer-ods">ODS 11 — Cidades e Comunidades Sustentáveis</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
